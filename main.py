@@ -78,7 +78,7 @@ def get_instagram_client():
 # ----------------------
 # 🚀 Main API Endpoint
 # ----------------------
-@app.get("/instagram/{username}",
+@app.get("/scrape/{username}",
          response_model=ProfileData,
          responses={
              404: {"model": ErrorResponse},
@@ -182,3 +182,4 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8090)
+
