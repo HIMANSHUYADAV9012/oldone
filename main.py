@@ -183,3 +183,11 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8090)
 
+
+
+# ✅ HEAD ke liye handler (UptimeRobot ke liye)
+@app.head("/health")
+async def health_check_head():
+    return JSONResponse(content=None, status_code=200)
+
+
