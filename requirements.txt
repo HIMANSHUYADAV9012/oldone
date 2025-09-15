@@ -1,5 +1,8 @@
-﻿fastapi
+fastapi
 uvicorn
-playwright
-pydantic
 instaloader
+slowapi
+cachetools
+httpx
+jinja2
+python-multipart
