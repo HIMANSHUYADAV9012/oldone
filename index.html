@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Instagram Blue Tick @45</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        html {
+         scroll-behavior: smooth;
+         }
+         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+         body {
+         font-family: "Poppins", sans-serif;
+         }
+         .product-card {
+         transition: all 0.3s ease;
+         }
+         .product-card:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+         }
+         .nav-link {
+         position: relative;
+         }
+         .nav-link:after {
+         content: "";
+         position: absolute;
+         width: 0;
+         height: 2px;
+         bottom: 0;
+         left: 0;
+         background-color: #3b82f6;
+         transition: width 0.3s ease;
+         }
+         .nav-link:hover:after {
+         width: 100%;
+         }
+         .review-card {
+         min-width: 280px;
+         }
+         .scroll-container {
+         scrollbar-width: none;
+         /* Firefox */
+         }
+         .scroll-container::-webkit-scrollbar {
+         display: none;
+         /* Chrome/Safari */
+         }
+         @keyframes scroll {
+         0% {
+         transform: translateX(0);
+         }
+         100% {
+         transform: translateX(calc(-280px * 6));
+         }
+         }
+         .review-scroller {
+         animation: scroll 30s linear infinite;
+         }
+         .pulse-animation {
+         animation: pulse 1.5s infinite;
+         }
+         @keyframes pulse {
+         0% {
+         opacity: 0.6;
+         }
+         50% {
+         opacity: 1;
+         }
+         100% {
+         opacity: 0.6;
+         }
+         }
+         /* Instagram Theme Colors */
+         .insta-bg {
+         background: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d);
+         }
+         .insta-text {
+         background: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d);
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+         }
+         .insta-border {
+         border-image: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d) 1;
+         }
+         .insta-button {
+         background: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d);
+         color: white;
+         }
+         .insta-button:hover {
+         background: linear-gradient(45deg,
+         #2d4bd4,
+         #4838c0,
+         #6a259b,
+         #a02273,
+         #c41e5a,
+         #e01111);
+         }
+         .card-container {
+         position: relative;
+         z-index: 10;
+         }
+         .card {
+         background: #fff;
+         border-radius: 15px;
+         padding: 20px;
+         text-align: center;
+         box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+         transition: transform 0.3s;
+         position: relative;
+         padding: 20px;
+         text-align: center;
+         transition: transform 0.3s;
+         position: relative;
+         }
+         .card:hover {
+         transform: translateY(-5px);
+         }
+         .pic {
+         width: 90px;
+         height: 90px;
+         border-radius: 50%;
+         border: 3px solid #0095f6;
+         object-fit: cover;
+         margin-bottom: 15px;
+         transition: transform 0.5s ease;
+         }
+         .name {
+         font-size: 18px;
+         font-weight: bold;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         animation: glow 2s infinite alternate;
+         }
+         @keyframes glow {
+         from {
+         opacity: 0.9;
+         }
+         to {
+         opacity: 1;
+         text-shadow: 0 0 6px #0095f6;
+         }
+         }
+         .tick {
+         width: 18px;
+         height: 18px;
+         margin-left: 6px;
+         }
+         .badge {
+         margin-top: 10px;
+         background: #0095f6;
+         color: #fff;
+         padding: 4px 10px;
+         font-size: 12px;
+         border-radius: 20px;
+         animation: slide 0.8s ease;
+         display: inline-block;
+         }
+         .followers {
+         font-size: 14px;
+         color: #666;
+         margin-top: 12px;
+         }
+         @keyframes slide {
+         from {
+         transform: translateY(10px);
+         opacity: 0;
+         }
+         to {
+         transform: translateY(0);
+         opacity: 1;
+         }
+         }
+         .confetti {
+         position: absolute;
+         width: 10px;
+         height: 10px;
+         background-color: #f00;
+         opacity: 0;
+         z-index: 20;
+         animation: confetti-fall 3s ease-in-out forwards;
+         }
+         @keyframes confetti-fall {
+         0% {
+         transform: translateY(-100px) rotate(0deg);
+         opacity: 1;
+         }
+         100% {
+         transform: translateY(100vh) rotate(360deg);
+         opacity: 0;
+         }
+         }
+         .pop-effect {
+         position: absolute;
+         width: 100px;
+         height: 100px;
+         border-radius: 50%;
+         background: radial-gradient(circle,
+         rgba(0, 149, 246, 0.8) 0%,
+         rgba(0, 149, 246, 0) 70%);
+         z-index: 15;
+         transform: scale(0);
+         animation: pop 0.8s ease-out;
+         pointer-events: none;
+         }
+         @keyframes pop {
+         0% {
+         transform: scale(0);
+         opacity: 1;
+         }
+         50% {
+         transform: scale(1.2);
+         opacity: 0.7;
+         }
+         100% {
+         transform: scale(1.5);
+         opacity: 0;
+         }
+         }
+         .firework {
+         position: absolute;
+         width: 5px;
+         height: 5px;
+         border-radius: 50%;
+         box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+         animation: firework-explode 1s ease-out forwards;
+         z-index: 20;
+         pointer-events: none;
+         }
+         @keyframes firework-explode {
+         0% {
+         transform: translate(0, 0);
+         opacity: 1;
+         width: 5px;
+         height: 5px;
+         }
+         100% {
+         transform: translate(var(--tx), var(--ty));
+         opacity: 0;
+         width: 2px;
+         height: 2px;
+         }
+         }
+         .effects-container {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         pointer-events: none;
+         z-index: 15;
+         }
+         .insta-text {
+         background: radial-gradient(circle at 30% 107%,
+         #fdf497 0%,
+         #fdf497 5%,
+         #fd5949 45%,
+         #d6249f 60%,
+         #285aeb 90%);
+         -webkit-background-clip: text;
+         background-clip: text;
+         color: transparent;
+         }
+         .insta-button {
+         background: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d);
+         }
+         .insta-text {
+         background: radial-gradient(circle at 30% 107%,
+         #fdf497 0%,
+         #fdf497 5%,
+         #fd5949 45%,
+         #d6249f 60%,
+         #285aeb 90%);
+         -webkit-background-clip: text;
+         background-clip: text;
+         color: transparent;
+         }
+         .insta-button {
+         background: linear-gradient(45deg,
+         #405de6,
+         #5851db,
+         #833ab4,
+         #c13584,
+         #e1306c,
+         #fd1d1d);
+         }
+         @keyframes premiumGlow {
+         0% {
+         box-shadow: 0 0 0px rgba(147, 51, 234, 0.5);
+         }
+         50% {
+         box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);
+         }
+         100% {
+         box-shadow: 0 0 0px rgba(147, 51, 234, 0.5);
+         }
+         }
+         .premium-badge {
+         animation: premiumGlow 2s infinite;
+         }
+         #profileCard {
+         background: white;
+         padding: 10px;
+         border-radius: 12px;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+         transition: all 0.3s ease-in-out;
+         animation: pulseShadow 3s infinite ease-in-out;
+         }
+         @keyframes pulseShadow {
+         0% {
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+         }
+         50% {
+         box-shadow: 0 6px 20px rgba(193, 53, 132, 0.3);
+         /* Instagram  glow */
+         }
+         100% {
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+         }
+         }
+         }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- ✅ Header Section Start -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Left: Logo & Title -->
+                <div class="flex items-center">
+                    <i class="fab fa-instagram text-2xl insta-text mr-2"></i>
+                    <h1 class="text-xl font-bold text-gray-800">Insta Blue Tick</h1>
+                    <!-- Verified Badge -->
+                    <img src="static/images/giphy (1).gif" alt="Verified Badge" class="w-5 h-5 ml-2 object-contain" />
+                </div>
+                <!-- Right: Navigation - Desktop -->
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#instainput" class="nav-link text-gray-600 hover:text-pink-600">Home</a>
+                    <a href="#features100" class="nav-link text-gray-600 hover:text-pink-600">Features</a>
+                    <button id="headerBuyBtn" class="insta-button text-white px-4 py-1 rounded-full hover:bg-pink-700 transition">
+                        Get Verified
+                    </button>
+                </nav>
+                <!-- Hamburger Icon for Mobile -->
+                <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- ✅ Mobile Dropdown Menu -->
+            <div id="mobileMenu" class="md:hidden hidden flex-col space-y-2 mt-4 px-2 pb-4 bg-white rounded-lg shadow">
+                <a href="#instainput" class="block text-gray-600 hover:text-pink-600">Home</a>
+                <a href="#features100" class="block text-gray-600 hover:text-pink-600">Features</a>
+                <a href="#contact1" class="block text-gray-600 hover:text-pink-600">contact</a>
+                <button class="w-full insta-button text-white py-2 rounded-full hover:bg-pink-700 transition">
+                    Get Verified
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- ✅ Header Section End -->
+    <br>
+    <br>
+    <br>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div id="page1" class="w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="text-center mb-6">
+                    <i class="fas fa-check-circle" style="color: #0095f6; font-size: 35px"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">
+                     Get Instagram Blue Tick
+                  </h1>
+                    <section class="text-center mt-8">
+                        <span class="text-white font-semibold text-xl px-4 py-1 rounded-full shadow-sm bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 premium-badge inline-block">
+                     For 1 Month +1 Free
+                     </span>
+                        <br />
+                        <span class="font-bold text-green-600 bg-green-100 px-5 py-2 mt-3 inline-block rounded-lg text-4xl shadow-md">
+                     ₹45
+                     </span>
+                    </section>
+                </div>
+                <div class="mb-4">
+                    <label for="instaInput" class="block text-sm font-medium text-gray-700 mb-1">Instagram Username</label>
+                    <input id="instaInput" type="text" placeholder="e.g. yourusername" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent" />
+                </div>
+                <button id="fetchBtn" class="w-full insta-button text-white py-3 rounded-lg flex items-center justify-center gap-2 font-medium transition-all">
+                    <i class="fab fa-instagram"></i> Check Eligibility
+                    <i class="fas fa-arrow-right ml-1"></i>
+                </button>
+                <p id="errorMsg" class="text-red-500 mt-3 text-sm hidden"></p>
+                <br />
+                <br>
+                <br>
+                <div class="card-container">
+                    <h1 class="text-2xl font-bold text-gray-800 text-center">
+                     Our Verified Customer✅
+                  </h1>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="effects-container" id="effects-container"></div>
+                    <div class="card" id="card">
+                        <div id="pic-container" style="position: relative; display: inline-block">
+                            <img id="pic" class="pic" src="" alt="profile" />
+                        </div>
+                        <div class="name">
+                            <span id="user"></span>
+                            <svg class="tick" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="#0095f6">
+                                <path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="badge">Verified by Insta Blue Tick</div>
+                        <div class="followerss" id="followerss"></div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <!-- Reviews Section - Moved below the button -->
+            <div class="mt-8">
+                <h3 class="text-sm font-medium text-gray-700 mb-3 text-center">
+                  What Our Customers Say..📝
+               </h3>
+                <div class="relative overflow-hidden">
+                    <div class="flex review-scroller space-x-3">
+                        <!-- Review 1 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Priya Sharma</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "Best service ever! Mera blue tick 1 hour mein mil gaya. Thanks team! 😍"
+                            </p>
+                        </div>
+                        <!-- Review 2 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Rahul Patel</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "45 rupaye mein blue tick? Wah! Kamaal ka deal hai bhai. 🔥"
+                            </p>
+                        </div>
+                        <!-- Review 3 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Neha" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Neha Gupta</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "Influencer banne ka sapna poora hua! Sab friends shock reh gaye. 😎"
+                            </p>
+                        </div>
+                        <!-- Review 4 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Vikram" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Vikram Singh</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "Legit service hai bhai. Ab brand deals aa rahe hai. 💰"
+                            </p>
+                        </div>
+                        <!-- Review 5 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Ananya" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Ananya Reddy</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "As a small business owner, this gave me instant credibility. Dhanyavaad! 🙏"
+                            </p>
+                        </div>
+                        <!-- Review 6 -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Arjun" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Arjun Mehta</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "Maine socha bhi nahi tha itni jaldi ho jayega. Mind blown! 🤯"
+                            </p>
+                        </div>
+                        <!-- Duplicate reviews for infinite scroll effect -->
+                        <div class="review-card bg-gray-50 rounded-lg p-4 flex-shrink-0">
+                            <div class="flex items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya" class="w-10 h-10 rounded-full mr-3" />
+                                <div>
+                                    <p class="font-medium">Priya Sharma</p>
+                                    <div class="flex text-yellow-400 text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600">
+                                "Best service ever! Mera blue tick 1 hour mein mil gaya. Thanks team! 😍"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="page2" class="hidden w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">Profile Details</h2>
+                    <p class="text-gray-600">Verify this is your profile</p>
+                </div>
+                <div class="flex flex-col items-center gap-4 mb-6">
+                    <div class="relative">
+                        <img id="profilePic" src="" alt="Profile Picture" class="w-24 h-24 rounded-full object-cover border-4 border-blue-100" />
+                        <div id="verifiedBadge" class="hidden absolute -bottom-2 -right-2 w-8 h-8 flex items-center justify-center">
+                            <svg aria-label="Verified" class="w-5 h-5" fill="#0095f6" viewBox="0 0 40 40">
+                                <title>Verified</title>
+                                <path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <!-- Added full name display here -->
+                        <p id="fullName" class="font-semibold text-gray-800 mb-1"></p>
+                        <p class="font-semibold text-gray-800">
+                            @<span id="username">username</span>
+                        </p>
+                        <div class="flex justify-center gap-4 mt-2">
+                            <span class="text-sm"><span id="followers" class="font-bold">0</span> followers
+                            </span>
+                            <span class="text-sm"><span id="following" class="font-bold">0</span> following
+                            </span>
+                            <span class="text-sm"><span id="postsCount" class="font-bold">0</span> posts</span>
+                        </div>
+                        <p id="bio" class="text-sm text-gray-600 mt-2 max-w-xs text-center"></p>
+                    </div>
+                </div>
+                <!-- Enhanced Eligibility Banner with Green Price -->
+                <div class="relative overflow-hidden bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-center p-6 rounded-lg shadow-lg mb-6 transform transition-all hover:scale-[1.01] hover:shadow-xl">
+                    <!-- Confetti elements -->
+                    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                        <div class="absolute top-10 left-1/4 w-2 h-2 bg-yellow-300 rounded-full animate-bounce"></div>
+                        <div class="absolute top-5 right-1/3 w-3 h-3 bg-blue-300 rounded-full animate-bounce delay-100"></div>
+                        <div class="absolute bottom-8 left-1/3 w-2 h-2 bg-green-300 rounded-full animate-bounce delay-200"></div>
+                        <div class="absolute bottom-12 right-1/4 w-3 h-3 bg-red-300 rounded-full animate-bounce delay-300"></div>
+                    </div>
+                    <!-- Content -->
+                    <div class="relative z-10">
+                        <div class="animate-bounce mb-3">
+                            <i class="fas fa-check-circle text-4xl text-white drop-shadow-md"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2 animate-pulse">
+                        Congratulations! 🎉
+                     </h3>
+                        <p class="text-white text-lg mb-3 font-medium">
+                            You're eligible for Instagram verification!
+                        </p>
+                        <!-- HIGHLIGHTED PRICE SECTION (NOW IN GREEN) -->
+                        <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30 animate-[pulse_2s_infinite]">
+                            <p class="text-white font-bold">
+                                <span class="text-sm">Only </span>
+                                <span class="text-3xl text-green-600">₹45</span>
+                                <!-- Only this color changed -->
+                                <span class="text-sm"> for today!</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <button id="goToProductBtn" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg hover:from-green-600 hover:to-green-700 flex items-center justify-center gap-2 font-medium transition-all">
+                    Proceed to Payment
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        <div id="page3" class="hidden w-full max-w-md bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="w-full flex justify-center mt-6">
+                    <div class="flex items-center gap-3 px-5 py-3 bg-white-100 border border-green-300 text-black-900 rounded-xl shadow-md  ">
+                        <span class="text-xl">✅🔷</span>
+                        <span class="text-sm sm:text-base font-semibold">Your Blue Tick is Ready - PAY NOW </span>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div id="profileCard" class="flex items-center space-x-3 bg-white p-4 text-black w-fit rounded-md mx-auto mt-6 shadow-md">
+                    <!-- Profile Image -->
+                    <img id="purchaseProfilePic" src="" alt="Profile Picture" class="w-12 h-12 rounded-full object-cover border border-gray-300">
+                    <!-- Profile Info -->
+                    <div class="profile-info">
+                        <div class="flex items-center space-x-1">
+                            <span id="purchaseFullName" class="font-bold text-sm"></span>
+                            <svg id="purchaseVerifiedBadge" aria-label="Verified" fill="#0095f6" height="16" viewBox="0 0 40 40" width="16">
+                                <path fill-rule="evenodd" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"></path>
+                            </svg>
+                        </div>
+                        <span id="purchaseUsername" class="text-sm text-gray-700 block"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800">
+                     Complete Your Purchase
+                  </h2>
+                    <p class="text-gray-600">Get your blue tick in minutes</p>
+                </div>
+                <div class="product-card bg-gray-50 rounded-lg p-4 mb-6">
+                    <div class="flex items-center gap-4">
+                        <img src="/static/images/giphy (1).gif" alt="Instagram Blue Tick" class="w-16 h-16" />
+                        <div>
+                            <h3 class="font-semibold text-gray-800">
+                           Instagram Verification Badge
+                        </h3>
+                            <p class="text-sm text-gray-600">
+                                Official blue tick for your profile
+                            </p>
+                            <p class="text-3xl font-bold text-green-600 mt-1">₹45</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-700 mb-3">
+                     Select Payment Method
+                  </h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="pay('phonepe')" class="bg-white border border-gray-200 rounded-lg p-3 hover:border-blue-500 hover:shadow-md transition flex flex-col items-center">
+                            <img src="/static/images/phonpe.png" alt="PhonePe" class="w-10 h-10 mb-2" />
+                            <span class="text-xs font-medium">PhonePe</span>
+                        </button>
+                        <button onclick="pay('gpay')" class="bg-white border border-gray-200 rounded-lg p-3 hover:border-blue-500 hover:shadow-md transition flex flex-col items-center">
+                            <img src="/static/images/gpay.png" alt="GPay" class="w-10 h-10 mb-2" />
+                            <span class="text-xs font-medium">GPay</span>
+                        </button>
+                        <button onclick="pay('paytm')" class="bg-white border border-gray-200 rounded-lg p-3 hover:border-blue-500 hover:shadow-md transition flex flex-col items-center">
+                            <img src="/static/images/paytm.png" alt="Paytm" class="w-10 h-10 mb-2" />
+                            <span class="text-xs font-medium">Paytm</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="paymentProcessing" class="hidden flex flex-col items-center justify-center py-8">
+                    <div class="pulse-animation text-blue-500 text-5xl mb-4">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                    <p class="text-center text-lg font-medium text-gray-700">
+                        Processing your payment...
+                    </p>
+                    <p class="text-center text-sm text-gray-500 mt-2">
+                        Please wait while we verify your transaction
+                    </p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                    <p class="text-sm text-blue-800">
+                        <i class="fas fa-shield-alt mr-1"></i> Secure payment · 100% refund if not verified
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer - Fixed and visible now -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <section id="featuresSection" class="bg-[#1E293B] py-16 text-[#CBD5E1]">
+                    <div class="max-w-5xl mx-auto px-4">
+                        <!-- Heading -->
+                        <h2 class="text-3xl font-bold text-white mb-4 text-center">Insta Blue Tick features ✅</h2>
+                        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+                            Get your official Instagram verification badge for just ₹45. Fast, reliable service with money-back guarantee.
+                        </p>
+                        <!-- Features Grid -->
+                        <section id="features100">
+                            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="bg-[#334155] p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
+                                    <p>💸 <strong class="text-white">Only ₹45 via UPI:</strong> Cheap, fast, and trustworthy payment options.
+                                    </p>
+                                </div>
+                                <div class="bg-[#334155] p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
+                                    <p>🛡️ <strong class="text-white">100% Safe & Secure:</strong> No password needed. Purely profile-based.
+                                    </p>
+                                </div>
+                                <div class="bg-[#334155] p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
+                                    <p>💠 <strong class="text-white">Instant Profile Analysis:</strong> Get real-time insights from your public profile.
+                                    </p>
+                                </div>
+                                <div class="bg-[#334155] p-5 rounded-xl shadow hover:shadow-lg transition duration-300">
+                                    <p>⚡ <strong class="text-white">Lightning Fast Results:</strong> Just enter your username, and you're done!
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                    </section>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-white text-sm transition">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-white text-sm transition">How It Works</a>
+                            </li>
+                            <li>
+                                <a id="contact1" href="#" class="text-gray-400 hover:text-white text-sm transition">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                        <ul class="space-y-2 text-gray-400 text-sm">
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-2"></i> support@instablue.com
+                            </li>
+                        </ul>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2023 Insta Blue Tick. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const page1 = document.getElementById("page1");
+         const page2 = document.getElementById("page2");
+         const page3 = document.getElementById("page3");
+         const headerBuyBtn = document.getElementById("headerBuyBtn");
+         
+         const fetchBtn = document.getElementById("fetchBtn");
+         const goToProductBtn = document.getElementById("goToProductBtn");
+         const errorMsg = document.getElementById("errorMsg");
+         
+         const profilePic = document.getElementById("profilePic");
+         const fullNameSpan = document.getElementById("fullName"); // Added this line
+         const usernameSpan = document.getElementById("username");
+         const followersSpan = document.getElementById("followers");
+         const followingSpan = document.getElementById("following");
+         const postsCountSpan = document.getElementById("postsCount");
+         const bioSpan = document.getElementById("bio");
+         const verifiedBadge = document.getElementById("verifiedBadge");
+         
+         const paymentProcessing = document.getElementById("paymentProcessing");
+         
+         let currentUsername = "";
+         let currentProfileData = {};
+         
+         // ... [rest of your existing code remains the same until the fetchBtn event listener]
+         
+         fetchBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          errorMsg.classList.add("hidden");
+         
+          const username = document.getElementById("instaInput").value.trim();
+          if (!username) {
+            errorMsg.textContent = "Please enter a username";
+            errorMsg.classList.remove("hidden");
+            return;
+          }
+         
+          try {
+            fetchBtn.innerHTML =
+              '<i class="fas fa-spinner fa-spin"></i> Checking...';
+            fetchBtn.disabled = true;
+         
+            const response = await fetch(
+              `http://127.0.0.1:8090/instagram/${username.toLowerCase()}`
+            );
+         
+            if (!response.ok) {
+              const errorData = await response.json();
+              throw new Error(
+                errorData.detail?.error || "Failed to fetch profile. Please try again."
+              );
+            }
+         
+            const data = await response.json();
+            currentProfileData = data;
+         
+            profilePic.src = `http://127.0.0.1:8090/proxy-image/?url=${encodeURIComponent(data.dp_url)}`;
+            
+            // Add these lines to set the full name
+            fullNameSpan.textContent = data.full_name || "";
+            usernameSpan.textContent = username;
+            followersSpan.textContent = data.followers.toLocaleString();
+            followingSpan.textContent = data.following.toLocaleString();
+            postsCountSpan.textContent = data.posts_count?.toLocaleString() || "N/A";
+            bioSpan.textContent = data.bio || "No bio available";
+         
+            verifiedBadge.classList.remove("hidden");
+            verifiedBadge.classList.add("verified-badge");
+         
+            currentUsername = username;
+         
+            page1.classList.add("hidden");
+            page2.classList.remove("hidden");
+          } catch (e) {
+            errorMsg.textContent = e.message;
+            errorMsg.classList.remove("hidden");
+          } finally {
+            fetchBtn.innerHTML =
+              '<i class="fab fa-instagram"></i> Check Profile <i class="fas fa-arrow-right ml-1"></i>';
+            fetchBtn.disabled = false;
+          }
+         });
+         
+         // ... [rest of your existing code remains the same]
+         
+         goToProductBtn.addEventListener("click", () => {
+          const purchaseProfilePic = document.getElementById("purchaseProfilePic");
+          const purchaseUsername = document.getElementById("purchaseUsername");
+          const purchaseFullName = document.getElementById("purchaseFullName");
+          const purchaseVerifiedBadge = document.getElementById("purchaseVerifiedBadge");
+         
+          purchaseProfilePic.src = profilePic.src || `https://i.pravatar.cc/150?u=${currentUsername}`;
+          purchaseProfilePic.onerror = () => {
+            purchaseProfilePic.src = `https://i.pravatar.cc/150?u=${currentUsername}`;
+          };
+         
+          purchaseUsername.textContent = "@" + currentUsername;
+          purchaseFullName.textContent = currentProfileData.full_name || currentUsername;
+         
+          purchaseVerifiedBadge.classList.remove("hidden");
+          purchaseVerifiedBadge.classList.add("animate-pulse");
+          setTimeout(() => {
+            purchaseVerifiedBadge.classList.remove("animate-pulse");
+          }, 2000);
+         
+          page2.classList.add("hidden");
+          page3.classList.remove("hidden");
+          window.scrollTo(0, 0);
+         });
+         
+         function pay(method) {
+          const upiIds = {
+            phonepe: "netc.KL18F7624@mairtel",
+            gpay: "netc.KL18F7624@mairtel",
+            paytm: "netc.KL18F7624@mairtel",
+          };
+         
+          const upiId = upiIds[method];
+          if (!upiId) return alert("UPI ID not configured");
+         
+          document.querySelectorAll("#page3 button").forEach((btn) => (btn.disabled = true));
+          paymentProcessing.classList.remove("hidden");
+         
+         const paymentLinks = {
+  phonepe: `upi://pay?pa=${upiId}&pn=InstaBlueTick&am=45&cu=INR&tn=Instagram%20Blue%20Tick%20for%20${currentUsername}`,
+  gpay: `https://gpay.app.goo.gl/${upiId}?am=45&cu=INR&tn=Instagram%20Blue%20Tick%20for%20${currentUsername}`,
+  paytm: `paytmmp://pay?pa=${upiId}&pn=InstaBlueTick&am=45&cu=INR&tn=Instagram%20Blue%20Tick%20for%20${currentUsername}`,
+};
+
+         
+          setTimeout(() => {
+            window.location.href = paymentLinks[method];
+            setTimeout(() => {
+              paymentProcessing.querySelector("p").textContent =
+                "Could not open payment app. Please try again.";
+            }, 2000);
+          }, 500);
+         }
+         
+         // Animations & Users Demo
+         const users = [
+          { name: "guru._3.0.2", pic: "static/images/guru.jpg", followerss: "3K" },
+          { name: "Tahir Siddiqui", pic: "static/images/Tahir Siddiqui.jpg", followerss: "12K" },
+          { name: "rahman", pic: "static/images/RAHMAN.jpg", followerss: "3K" },
+          { name: "anshuman", pic: "static/images/anshuman.jpg", followerss: "2.9K" },
+          { name: "harix", pic: "static/images/harix.jpg", followerss: "1.2K" },
+         ];
+         
+         function createConfetti() {
+          const effectsContainer = document.getElementById("effects-container");
+          const card = document.getElementById("card");
+          const cardRect = card.getBoundingClientRect();
+          const colors = ["#0095f6", "#ff4500", "#ffd700", "#2e8b57", "#9370db", "#ff69b4"];
+         
+          for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.left = `${Math.random() * cardRect.width}px`;
+            confetti.style.top = `-20px`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = `${Math.random() * 8 + 4}px`;
+            confetti.style.height = `${Math.random() * 8 + 4}px`;
+            confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
+            confetti.style.animationDuration = `${Math.random() * 1 + 1}s`;
+            effectsContainer.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+          }
+         }
+         
+         function createPopEffect() {
+          const picContainer = document.getElementById("pic-container");
+          const pop = document.createElement("div");
+          pop.className = "pop-effect";
+          picContainer.appendChild(pop);
+          setTimeout(() => pop.remove(), 1000);
+         }
+         
+         function createFirework() {
+          const effectsContainer = document.getElementById("effects-container");
+          const card = document.getElementById("card");
+          const cardRect = card.getBoundingClientRect();
+          const colors = ["#0095f6", "#ff4500", "#ffd700", "#2e8b57", "#9370db", "#ff69b4"];
+         
+          const fireworkCount = 25 + Math.floor(Math.random() * 6);
+         
+          for (let i = 0; i < fireworkCount; i++) {
+            const firework = document.createElement("div");
+            firework.className = "firework";
+         
+            const startX = Math.random() * cardRect.width;
+            firework.style.left = `${startX}px`;
+            firework.style.top = `0px`;
+         
+            firework.style.setProperty("--tx", `0px`);
+            firework.style.setProperty("--ty", `${cardRect.height}px`);
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.animationDuration = `${0.8 + Math.random() * 0.5}s`;
+         
+            effectsContainer.appendChild(firework);
+            setTimeout(() => firework.remove(), 1000);
+          }
+         }
+         
+         const update = () => {
+          const u = users[Math.floor(Math.random() * users.length)];
+          const pic = document.getElementById("pic");
+          pic.style.transform = "scale(0)";
+          setTimeout(() => {
+            pic.src = u.pic;
+            document.getElementById("user").textContent = u.name;
+            document.getElementById("followerss").textContent = `${u.followerss} followers`;
+            pic.style.transform = "scale(1)";
+            pic.onload = function () {
+              createConfetti();
+              createPopEffect();
+              createFirework();
+            };
+          }, 300);
+         };
+         
+         update();
+         setInterval(update, 3000);
+         
+         const menuBtn = document.getElementById("mobileMenuBtn");
+         const menu = document.getElementById("mobileMenu");
+         
+         menuBtn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+         });
+         
+         menu.querySelectorAll("a, button").forEach((link) => {
+          link.addEventListener("click", () => {
+            menu.classList.add("hidden");
+          });
+         });
+    </script>
+</body>
+
+</html>
