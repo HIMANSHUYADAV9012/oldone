@@ -117,7 +117,7 @@ async def get_instagram_profile(request: Request, username: str):
             followers=profile.followers,
             following=profile.followees,
             posts_count=profile.mediacount,
-            dp_url=profile.profile_pic_url,
+            dp_url=profile.dp_url,
             bio=profile.biography,
             full_name=profile.full_name
         )
@@ -189,5 +189,6 @@ if __name__ == "__main__":
 @app.head("/health")
 async def health_check_head():
     return JSONResponse(content=None, status_code=200)
+
 
 
