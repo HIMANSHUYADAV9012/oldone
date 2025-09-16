@@ -5,7 +5,7 @@ import instaloader
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from cachetools import TTLCache
-from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import httpx
@@ -47,12 +47,12 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # ----------------------
 class ProfileData(BaseModel):
     username: str
+    real_name: str
+    profile_pic: str
     followers: int
     following: int
-    posts_count: int
-    dp_url: str
+    post_count: int
     bio: str = None
-    full_name: str = None
 
 class ErrorResponse(BaseModel):
     error: str
@@ -112,14 +112,15 @@ async def get_instagram_profile(request: Request, username: str):
                 detail={"error": "Profile not found", "details": "Invalid data from Instagram"}
             )
 
+        # ✅ Response in required format
         profile_data = ProfileData(
             username=profile.username,
+            real_name=profile.full_name,
+            profile_pic=profile.profile_pic_url,
             followers=profile.followers,
             following=profile.followees,
-            posts_count=profile.mediacount,
-            dp_url=profile.dp_url,
-            bio=profile.biography,
-            full_name=profile.full_name
+            post_count=profile.mediacount,
+            bio=profile.biography
         )
 
         # Cache result
@@ -146,6 +147,9 @@ async def get_instagram_profile(request: Request, username: str):
             detail={"error": "Internal error", "details": str(e)}
         )
 
+# ----------------------
+# 🖼 Proxy Image Endpoint
+# ----------------------
 @app.get("/proxy-image/")
 async def proxy_image(url: str):
     try:
@@ -164,7 +168,6 @@ async def proxy_image(url: str):
         logger.error(f"Error proxying image: {e}")
         raise HTTPException(status_code=500, detail="Image fetch failed")
 
-    
 # ----------------------
 # 🧪 Health Check
 # ----------------------
@@ -176,19 +179,14 @@ async def health_check():
         "cache_size": len(profile_cache)
     }
 
+# ✅ HEAD ke liye handler (UptimeRobot ke liye)
+@app.head("/health")
+async def health_check_head():
+    return JSONResponse(content=None, status_code=200)
+
 # ----------------------
 # 🔥 Run app (Local dev only)
 # ----------------------
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8090)
-
-
-
-# ✅ HEAD ke liye handler (UptimeRobot ke liye)
-@app.head("/health")
-async def health_check_head():
-    return JSONResponse(content=None, status_code=200)
-
-
-
